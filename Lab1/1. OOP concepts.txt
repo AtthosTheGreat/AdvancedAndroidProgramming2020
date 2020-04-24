@@ -1,0 +1,122 @@
+1.Object: An object is something which exists in memory while the program is running. It can have methods and fields. It is an instance of a class.
+
+2.Class: A class is a like a blueprint of how an object will look like and behave when it is created. A class is an abstract concept, it doesn't occupy memory.
+
+3.Instantiation of object: To instantiate an object means to create an object, at runtime. The object will exist and will take up memory space.
+
+4.Visibility (public / private / protected / default):
+- public: gives access from any class or package.
+- private: gives access only from within that class.
+- protected: gives access only from the same package or classes which inherit from the original class.
+- default: also called package access, gives access only from that same package.
+
+5.Member datas/methods: Members datas store are variables declared inside a class. Member methods are functions part of that class. They can be called on an object.
+
+6.Inheritance: A class can inherit from another class. The class which inherits is called a subclass. The other one is called a superclass. The subclass has access to all the member methods and datas of the superclass which are not defined as private.
+
+7.Interface: An interface is used to describe what a class can do if it implements it. It can only have methods declared in it.
+
+8.Polymorphism: it refers to when a class is of more than one type. For example, if a class B inherits from a class A, an object of type B is also of type A.
+
+9.Overriding: If a class B inhereits form a class A which already has a method with a particular signature, class B can hide that method and make its own. Then, the only way to access the original method from class A is inside the method in class B, through the use of the keywork super.
+
+10.Abstract classes: is a class only used as a superclass, for defining what the subclasses will know and do. An abstract class can't be instantiated, only inherited from.
+
+See below an example.
+
+class MainClass
+{
+	public static void main(String[] args)
+	{
+		A a = new A(); // this is a reference to an object. The object has been created by instantiating.
+		
+		int sum = 0;
+		sum += a.x; // will work because x is public
+		sum += a.y; // will work because y is protected and we are in the same package. It will also work if accessed from a subclass.
+		// sum += a.z; wont work because z is private. It can only be accessed from the same class.
+		sum += a.t; // will work because t has the default access modifier. It will be visible from any class inside this package.
+		
+		ICanSing someSinger = new OperaSinger();
+		someSinger.sing();  // Because OperaSinger implements ICanSing interface, we can hold a reference to it as ICanSing.
+							// This will also allow us to call the sing method on a reference of type ICanSing because we know that every ICanSing can sing.
+		
+		B b = new B();
+		if (b instanceof B)
+		{
+			System.out.println("b is instance of B");
+		}
+		if (b instanceof A)
+		{
+			System.out.println("b is instance of A");
+		}
+		// this shows that b is both an instance of A and B
+		
+		b.sayHello(""); // the original method from A has been overriden
+		
+		// X x = new X(); this won't work because X is abstract
+		Y y = new Y();
+		y.abc();
+		y.ABC();
+	}
+}
+
+class A // this is a class
+{
+	// this is member data
+	public int x;
+	protected int y;
+	private int z;
+	int t;
+	
+	// this is a member method
+	public void sayHello(String name)
+	{
+		System.out.println("Hello " + name + "!");
+	}
+	
+	// this is a member method
+	public void sayHelloWorld()
+	{
+		System.out.println("Hello world!");
+	}
+}
+
+class OperaSinger implements ICanSing
+{
+	public void sing() {
+		System.out.println("Singing...lalala...lalala...");
+	}
+}
+
+interface ICanSing
+{
+	void sing();
+}
+
+class B extends A // class B inherits from class A
+{
+	@Override
+	public void sayHello(String name)
+	{
+		System.out.println("Hello there " + name + "!");
+	}
+}
+
+abstract class X
+{
+	public abstract void abc();
+	
+	public void ABC()
+	{
+		System.out.println("implemented from abstract class");
+	}
+}
+
+class Y extends X
+{
+	@Override
+	public void abc() {
+		// TODO Auto-generated method stub
+		System.out.println("This needs to be implemented here.");
+	}
+}

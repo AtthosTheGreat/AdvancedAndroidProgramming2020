@@ -1,0 +1,20 @@
+1.What programming languages you can use for Android app development?
+Java, Kotlin and C++ can be used to make android apps.
+
+2.What is .apk file?
+A .apk file is an archive which contains every part of the app. It is used for installing the app.
+
+3.How Android system runs apps?
+Android is a multi user Linux system. Each app is a different user. Each process runs inside its own virtual machine, independently from other apps. The system starts and stops processes as needed.
+
+4.Name four types of Android components. Describe each.
+- activities: is a single screen, with user interface
+- services: they run in background. They are used to run an operation which is needed without the user seeing any activity on the screen, or for long running operations. The user might not even know it is running.
+- broadcast receivers: allowes the system to deliver events to other apps, even if they are not running at that time.
+- content providers: are used to manage access to a central repository of data
+
+5.What is manifest file and what is its purpose?
+It is a file which tells the Android system the app's components. It lists permissions, the minimum API level needed to run the app, other used APIs and other used hardware or software features.
+
+6.What are resources? Why they are needed?
+Android resources are things separate from the source code, such as images, styles, colors, animations or audio files. They are used for having different resources for different device configurations, for example changing the UI language based on the location.
